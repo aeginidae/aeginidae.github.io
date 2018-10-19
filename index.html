@@ -3,11 +3,12 @@
     <head>
         <title>It's-a me, Alexa!</title>
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Niramit');
             body {
-                background: rgb(125, 198, 205);
+                background: #555;
                 color: rgb(45, 45, 45);
                 padding: 10px;
-                font-family: arial;
+                font-family: Niramit;
             }
             header {
                 font-size: 1.5em;
@@ -21,19 +22,56 @@
             /* navigation menu */
             nav {
                 border-radius: 10px;
-                border-style: dashed;
-                border-color: rgb(255,100,255);
-                background: rgb(239, 80, 41);
+                border-style: solid;
+                border-color: #682645;
+                border-width: 5px 1px 0px 3px;
+                background-color: #AB517C;
+                background-image: radial-gradient(circle, #4D1932 10%, transparent 12%),
+                radial-gradient(circle, #84375B 8%, transparent 9%);
+                background-size: 5em 5em;
+                background-position: 0 0, 2.5em 2.5em;
                 margin: 0 auto;
                 margin-bottom: 20px;
-                display: flex;
+                display: block;
                 padding: 10px;
+            }
+            nav img {
+                max-height: 15em;
+                border: solid .1em #682645;
+                border-radius: .3em;
             }
             nav header {
                 display: flex;
                 align-items: center;
                 color: rgb(255, 255, 255);
                 flex: 1;
+            }
+            #header {
+                display:flex;
+                height:16em;
+            }
+            #navbar {
+                position: relative;
+                height: 2em;
+                width: 40em;
+                right: 2.3em;
+                background:linear-gradient(
+                #452153,
+                #764388 40%,
+                #8A4F9F);
+            }
+            #navbar-decoration {
+                z-index:-1;
+                position:relative;
+                height: 2em;
+                width:5em;
+                top:1em;
+                right:5.7em;
+                background:linear-gradient(
+                -30deg,
+                #33163D 50%,
+                transparent 50%);
+                background-size:5em 5em;
             }
             nav ul {
                 list-style-image: none;
@@ -46,11 +84,14 @@
                 text-decoration: none;
                 color: #fff;
             }
+            nav a:hover {
+                color: #70923C;
+            }
     
             /* main container area beneath menu */
             main {
-                background: rgb(245, 238, 219);
                 display: flex;
+                background: #cf6e61;
             }
             .sidebar {
                 margin-right: 25px;
@@ -72,12 +113,18 @@
     <body>
         <div id="all-contents">
             <nav>
-                <header>My Purposeless Website</header>
-                <img src="https://upload.wikimedia.org/wikipedia/en/9/95/Powerpuff_girls_characters.jpg">
+                <div id="header">
+                <header>My Purposeless Website<br>//TODO insert logo here lol</header>
+                <img src="img/headshot.jpg">
+                </div>
+                <div id="navbar-decoration">
+                </div>
+                <div id="navbar">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
                 </ul>
+                </div>
             </nav>
             <main>
                 <div class="sidebar">
