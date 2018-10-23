@@ -13,8 +13,8 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+
+    return x => x > base;
     
     
     // YOUR CODE ABOVE HERE //
@@ -27,7 +27,7 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
+    return x => x < base;
     
     
     
@@ -42,7 +42,7 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    return str => str.toLowerCase().startsWith(startsWith.toLowerCase());
     
     
     // YOUR CODE ABOVE HERE //
@@ -55,7 +55,7 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
+    return str => str.toLowerCase().endsWith(endsWith.toLowerCase());
     
     
     
@@ -71,10 +71,8 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    return strings.map(str => modify(str)); // returns an array of all the values of the given array
+                                            // after performing a given function on each of them
     // YOUR CODE ABOVE HERE //
 }
 
@@ -89,10 +87,7 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    return strings.every(test); // checks if every element in an array passes a given test
     // YOUR CODE ABOVE HERE //
 }
 

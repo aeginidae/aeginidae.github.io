@@ -88,9 +88,9 @@ catch (e) {
 }
 
 // NOTE : a const must be given a value when it is initialized! //
-try { 
-    const e;
-}
-catch (e) {
-    console.log("this throws an error!");
-}
+// try { 
+//     const e;
+// }
+// catch (e) {
+//     console.log("this throws an error!");
+// }

@@ -35,11 +35,6 @@ nav {
     display: block;
     padding: 10px;
 }
-nav img {
-    max-height: 15em;
-    border: solid .1em #682645;
-    border-radius: .3em;
-}
 nav header {
     display: flex;
     align-items: center;
@@ -48,7 +43,6 @@ nav header {
 }
 #header {
     display:flex;
-    height:16em;
 }
 #navbar {
     position: relative;

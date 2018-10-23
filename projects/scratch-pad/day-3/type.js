@@ -14,7 +14,7 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    
+    return Array.isArray(value);
     
     
     
@@ -31,10 +31,8 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    if (value === null) return false;
+    return !(value instanceof Date || value instanceof Array) && (typeof(value) === "object");
     // YOUR CODE ABOVE HERE //
 }
 
@@ -46,7 +44,7 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
+    return !(value instanceof Date || value === null) && (typeof(value) === "object");
     
     
     
@@ -74,7 +72,12 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
+    if (typeof(value) !== "object") return typeof(value);
+    else if (value === null) return "null";
+    else if (value === undefined) return "undefined";
+    else if (value instanceof Array) return "array";
+    else if (value instanceof Date) return "date";
+    else return "object";
     
     
     
