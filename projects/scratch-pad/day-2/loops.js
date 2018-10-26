@@ -90,7 +90,10 @@ function getObjectLength(object) {
  */
 function printObjectValuesInReverse(object) {
   // YOUR CODE BELOW HERE //
-  let valueArr = Object.values(object);
+  const valueArr = [];
+  for ( const key in object ) {
+    valueArr.push(object[key]);
+  }
   for (let i = 1; i <= valueArr.length; i++) {
     console.log(valueArr[valueArr.length - i]);
   }

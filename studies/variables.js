@@ -69,7 +69,7 @@ for (let i = 0; i < 5; i++) {
     console.log(i);
 }
 try {
-    for (i; i < 10; i++) {
+    for (let i; i < 10; i++) {
         console.log(i);
     }
 }
