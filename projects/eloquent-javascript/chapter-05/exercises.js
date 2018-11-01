@@ -1,12 +1,12 @@
-// EXERCISE ONE
+// /////////////////////////////////////////////////////////////////////////////
+// flatten /////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
-// FLATTENING
+const flatten = arr => arr.reduce((x, y) => x.concat(y));
 
-const flattenArray = arr => arr.reduce((x, y) => x.concat(y));
-
-// EXERCISE TWO
-
-// YOUR OWN LOOP
+// /////////////////////////////////////////////////////////////////////////////
+// loop ////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 function loop(value, test, update, body) {
     // given a value value, a function test, a function update, and a function body,
@@ -18,9 +18,9 @@ function loop(value, test, update, body) {
     }
 }
 
-// EXERCISE THREE
-
-// EVERYTHING
+// /////////////////////////////////////////////////////////////////////////////
+// every ///////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
 function every(array, test) {
     // imitates the Array.prototype.every() method
@@ -38,13 +38,11 @@ function everyWithSome(array, test) {
     return array.some(x => !test(x)) ? false : true;
 }
 
-// EXERCISE THREE
+// /////////////////////////////////////////////////////////////////////////////
+// dominantDirection ///////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
 
-// DOMINANT WRITING DIRECTION
-
-require('./modules/scripts.js');
-
-function characterScripts(char) {
+function characterScriptPrime(char) {
   	const code = char.codePointAt(0);
     for (const script of SCRIPTS) {
         if (script.ranges.some(([from, to]) => code >= from && code <= to)) {  
@@ -54,7 +52,7 @@ function characterScripts(char) {
     return null;
 }
 
-function countsBy(iter, func) {
+function countByPrime(iter, func) {
     // given an iterable and a function
     // that coerces the values in the iterable
     // to any value, generates an array of objects
@@ -78,8 +76,20 @@ function dominantDirection(text) {
     // takes a string of text, and using the provided
     // SCRIPTS array, determines whether the predominant writing direction
     // is left-to-right (ltr), right-to-left (rtl), or top-to-bottom (ttb)
-    const scripts = countsBy(text, characterScripts).filter(({name}) => name !== null);
+    const scripts = countByPrime(text, characterScriptPrime).filter(({name}) => name !== null);
     return scripts.reduce((a, b) => a.count > b.count ? a : b).name.direction;
 }
 
-dominantDirection("Hello world");
+// /////////////////////////////////////////////////////////////////////////////
+//  //////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////
+
+if ((typeof process !== 'undefined') &&
+  (typeof process.versions.node !== 'undefined')) {
+  module.exports = {
+    flatten,
+    loop,
+    every,
+    dominantDirection,
+  };
+};

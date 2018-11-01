@@ -101,7 +101,8 @@ const obj = {
     nameLast: "Welch"
 }
 
-console.log(Object.values(obj), obj.nameLast, obj["nameFirst"]);
+console.log(obj.nameLast, obj["nameFirst"]);
+// Object.values(obj) isn't recognized by os test so I'm commenting this one out
 
 // an Object is a set of key-value pairs. The keys must be strings (quotes not required), and
 // the values can be any data type, including other objects. Object keys can be accessed through

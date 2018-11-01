@@ -3,7 +3,11 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+    const values = [];
+    for (const key in object) {
+        values.push(object[key]);
+    }
+    return values;
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +15,7 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    return Object.keys(object).join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,7 +23,7 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    return objectValues(object).filter(item => typeof item === "string").join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +31,7 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    return typeof collection === "object" && Array.isArray(collection) ? 'array' : 'object';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +39,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string.slice(0, 1).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +47,7 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    return string.split(' ').map(str => capitalizeWord(str)).join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,7 +55,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    return object.name.length > 0 ? `Welcome ${capitalizeWord(object.name)}!` : undefined;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,7 +63,7 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    return object.name.length > 0 && object.species.length > 0 ? `${capitalizeWord(object.name)} is a ${capitalizeWord(object.species)}` : undefined;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -67,7 +71,7 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    return object.noises && object.noises.length > 0 ? object.noises.join(' ') : 'there are no noises';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -75,7 +79,7 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    return new RegExp(word).test(string);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -83,7 +87,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name);
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -91,7 +96,7 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    return object.friends ? object.friends.some(friend => friend === name) : false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -99,15 +104,21 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    const personalObj = array[array.findIndex(person => person.name === name)]; // the object with name property of name
+    return array.map(obj => obj.name)       // Array of name property of objects in array
+    .filter(friend => !isFriend(friend, personalObj) && friend !== name);
 }
+/* the stupid code-golf answer
+* const nonFriends=(n,a)=>a.map(o=>o.name).filter(f=>!isFriend(f,a[a.findIndex(p=>p.n===n)])&&f!==n;
+*/
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -115,15 +126,34 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    const keys = Object.keys(object);
+    for (const value of array) {
+        if (keys.includes(value)) {
+            delete object[value];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function dedup(array) {
+function counter(val, array) {
+    if (!(array.indexOf(val) === array.lastIndexOf(val))) {
+        array.splice(array.lastIndexOf(val), 1);
+        return counter(val, array);
+    }
+}
 
+function dedup(array) {
+    let result = [];
+    for (const val of array) {
+        result.push(val);
+    }
+    for (const val of result) {
+        counter(val, result);
+    }
+    return result;
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -115,7 +115,3 @@ function objectCompare(x, y) {
         return true;
     }
 }
-
-const obj1 = {1: {1: 2, 3: 5}, 3: [2,5]};
-const obj2 = {1: {1: 2, 3: 5}, 3: 4};
-deepEqual(obj1, obj2);

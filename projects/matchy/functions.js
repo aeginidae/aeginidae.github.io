@@ -27,7 +27,7 @@ function search(animals, name) {
 //////////////////////////////////////////////////////////////////////
 function replace(animals, name, replacement) {
     for (let i = 0; i < animals.length; i++) {
-        if (animals[i]["name"] === name) {
+        if (animals[i].name === name) {
             animals[i] = replacement;
             break;
         }
