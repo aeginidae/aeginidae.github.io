@@ -109,7 +109,7 @@ function nonFriends(name, array) {
     .filter(friend => !isFriend(friend, personalObj) && friend !== name);
 }
 /* the stupid code-golf answer
-* const nonFriends=(n,a)=>a.map(o=>o.name).filter(f=>!isFriend(f,a[a.findIndex(p=>p.n===n)])&&f!==n;
+* const nonFriends=(n,a)=>a.map(o=>o.n).filter(f=>!isFriend(f,a[a.findIndex(p=>p.n===n)])&&f!==n;
 */
 
 //////////////////////////////////////////////////////////////////////
@@ -138,12 +138,13 @@ function removeProperties(object, array) {
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+
 function counter(val, array) {
-    if (!(array.indexOf(val) === array.lastIndexOf(val))) {
-        array.splice(array.lastIndexOf(val), 1);
-        return counter(val, array);
+    while (array.indexOf(val) !== array.lastIndexOf(val)) {
+    array.splice(array.lastIndexOf(val), 1);     
     }
 }
+
 
 function dedup(array) {
     let result = [];
