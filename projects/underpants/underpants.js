@@ -143,21 +143,6 @@ _.indexOf = (array, value) => {
     return -1;
 };
 
-// _.indexOf = (array, value) => {
-//     const result = [];
-//     _.each(array, function(val, index, array) {
-//         if (val === value) {
-//             result.push(index);
-//         }
-//     });
-//     console.log(result);
-//     if (result.length === 0) {
-//         return -1;
-//     } else {
-//         return result[0];
-//     }
-// };
-
 /** _.filter()
 * Arguments:
 *   1) An array
@@ -194,7 +179,7 @@ _.filter = (array, func) => {
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 _.reject = (array, func) => {
-    return _.filter(array, value => !_.filter(array, func).includes(value));
+    return _.filter(array, (value, index) => !func(value, index, array));
 };
 
 /** _.partition()
@@ -311,31 +296,17 @@ _.contains = (array, value) => {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-_.every = (collection, func) => {
-    if (!func) {
-        if (_.typeOf(collection) === "array") {
-            for (const val of collection) {
-                if (!val) return false;
-            }
-            return true;
-        } else {
-            for (const key in collection) {
-                if (!collection[key]) return false;
-            }
-            return true;
+_.every = (collection, func = e => !!e) => {
+    if (_.typeOf(collection) === "array") {
+        for (let i = 0; i < collection.length; i++) {
+            if (!func(collection[i], i, collection)) return false;
         }
+        return true;
     } else {
-        if (_.typeOf(collection) === "array") {
-            for (let i = 0; i < collection.length; i++) {
-                if (!func(collection[i], i, collection)) return false;
-            }
-            return true;
-        } else {
-            for (const key in collection) {
-                if (!func(collection[key], key, collection)) return false;
-            }
-            return true;
+        for (const key in collection) {
+            if (!func(collection[key], key, collection)) return false;
         }
+        return true;
     }
 };
 
@@ -360,6 +331,10 @@ _.every = (collection, func) => {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 _.some = (collection, func) => {
+    // we would be reusing other functions here
+    // but writing it as a loop is much faster
+    // as you can short-circuit the loop
+    // if you find a true value
     if (!func) {
         if (_.typeOf(collection) === "array") {
             for (const val of collection) {
