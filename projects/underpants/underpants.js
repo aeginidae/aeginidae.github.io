@@ -330,7 +330,7 @@ _.every = (collection, func = e => !!e) => {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-_.some = (collection, func) => {
+_.some = (collection, func = e => !!e) => {
     // we would be reusing other functions here
     // but writing it as a loop is much faster
     // as you can short-circuit the loop
