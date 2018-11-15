@@ -55,6 +55,7 @@ const topThreeTags = array => {
     _.each(array, ele =>    // going into each object in the array
         _.each(ele.tags, tag =>     // going into each array "tags" in those objects
             result.hasOwnProperty(tag) ? result[tag] += 1 : result[tag] = 1));  // sum up occurrences of each tag
+            console.log(Object.keys(result).sort((a, b) => result[b] - result[a]), result)
     return _.first(Object.keys(result).sort((a, b) => result[b] - result[a]), 3); // sort in descending order, return first three
 };
 
